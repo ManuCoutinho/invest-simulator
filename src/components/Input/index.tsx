@@ -1,16 +1,19 @@
-import { FormControl, FormErrorMessage, FormLabel, Input as ChakraInput, InputProps} from "@chakra-ui/react";
+import { useState } from "react";
 import { FieldError } from "react-hook-form";
+import { FormControl, FormLabel, FormErrorMessage, InputBase } from "./styles";
 
-interface ChakraInputProps extends InputProps {
+interface InputProps {  
   name: string;
   label: string;
   type: string;
   error: FieldError
 
 }
-export function Input({ name, label, type, error, ...rest }:ChakraInputProps){
+export function Input({ name, label, type, error}:InputProps){
+  const isInvalid = useState(false);
+  //aria-invalid={true}
   return(
-   <FormControl isInvalid={!!error}>
+   <FormControl >
      {!!label && 
       <FormLabel
         htmlFor={name}
@@ -20,14 +23,11 @@ export function Input({ name, label, type, error, ...rest }:ChakraInputProps){
       >
         {label}
       </FormLabel>}
-    <ChakraInput 
+    <InputBase 
       name={name}
       id={name}
       type={type}
-      bgColor="transparent"      
-      variant="flushed"
-      borderColor="black"        
-      {...rest}
+     
     />
      {!!error && (<FormErrorMessage>{ error.message }</FormErrorMessage>)}
    </FormControl>

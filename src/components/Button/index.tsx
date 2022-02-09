@@ -1,13 +1,14 @@
-import { Button as ChakraButton, ButtonProps } from "@chakra-ui/react"
+import { ButtonBase } from "./styles";
 
-interface ChakraButtonProps extends ButtonProps {
+interface ButtonBaseProps  {
 text: string;
+type: "button" | "reset" | "submit";
 }
 
-export function Button({ text, type, ...rest }: ChakraButtonProps){
+export function Button({ text, type }: ButtonBaseProps){
   return(
-    <ChakraButton type={type} {...rest} fontWeight="bold" fonttSize="lg">
+    <ButtonBase type={type}>
       {text}
-    </ChakraButton>
+    </ButtonBase>
   )
 }

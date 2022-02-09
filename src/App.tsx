@@ -1,17 +1,23 @@
-import { Box, Flex } from "@chakra-ui/react"
 import { Heading } from "../src/components/Heading"
-import { Form } from "./components/Form"
+import { Container } from "./components/Foundation/Container"
+import { FlexBox } from "./components/Foundation/FlexBox"
+import { Title } from "./components/Foundation/Title"
+import { MainForm } from "./components/MainForm"
+import { FlexGrid } from "./components/Foundation/FlexGrid"
 
 function App() {  
+  //TODO colocar grid 2x no container
   return (
-    <Box as="main" m="auto" bg="gray.100" w={1280} px="6" py="8">
-      <Heading as="h1" text="Simulador de Investimentos" textAlign="center" mb={9}/>
-      <Flex direction="column">
-        <Heading text="Simulador" fontSize="2xl"/>
-        <Form/>        
-        <Box as="form"></Box>
-      </Flex>
-    </Box>
+    <Container>      
+        <Heading text="Simulador de Investimentos"/>
+        <FlexGrid>
+          <FlexBox>
+              <Title>Simulador</Title>
+              <MainForm/>        
+              <FlexBox></FlexBox>
+            </FlexBox>    
+        </FlexGrid>
+    </Container>
   )
 }
 

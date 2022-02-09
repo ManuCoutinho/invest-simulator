@@ -1,13 +1,13 @@
-import { Heading as ChakraHeading, HeadingProps } from "@chakra-ui/react"
+import { Header } from "./styles"
 
-interface ChakraHeadingProps extends HeadingProps {
+interface HeadingProps {
   text: string
 }
 
-export function Heading({ text, ...rest }:ChakraHeadingProps){
+export function Heading({ text }:HeadingProps){
   return(
-    <ChakraHeading p={4} letterSpacing="tighter" {...rest}>
+    <Header>
        {text}
-    </ChakraHeading>
+    </Header>
   )
 }
