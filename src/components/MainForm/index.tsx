@@ -1,18 +1,21 @@
 import { useForm } from "react-hook-form"
 import { ButtonGroup } from "../ButtonGroup"
 import { FlexBox } from "../Foundation/FlexBox"
+import { Title } from "../Foundation/Title"
 import { Input } from "../Input"
-import { RadioGroup } from "../RadioInput/RadioGroup"
+import { RadioGroupIncome } from "../RadioInput/RadioGroupIncome"
+import { RadioGroupIndexType } from "../RadioInput/RadioGroupIndexType"
 
 import { Form, FormContainer } from "./styles"
 
-export function MainForm(){
+const MainForm: React.FC = () => {
   const {register, handleSubmit, formState:{ errors }} = useForm()
   return(
     <Form>
       <FormContainer onSubmit={()=>{}}>
-        <FlexBox>    
-        <RadioGroup/>
+        <FlexBox direction="column"> 
+          <Title fontSize="1em">Rendimentos</Title>   
+        <RadioGroupIncome/>
         <Input
             name="capital"
             label="Aporte Inicial"
@@ -35,8 +38,9 @@ export function MainForm(){
             {...register("deadline")} 
           />               
         </FlexBox>
-        <FlexBox>
-          
+        <FlexBox direction="column">
+          <Title fontSize="1em">Tipos de indexação</Title>   
+          <RadioGroupIndexType/>
           <Input
               name="capital"
               label="Aporte Mensal"
@@ -64,3 +68,5 @@ export function MainForm(){
     </Form>
   )
 }
+
+export default MainForm;

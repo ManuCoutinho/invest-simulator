@@ -35,5 +35,6 @@ declare module "styled-components" {
     };
     transition: string;
     radius: string,
+    
   }
 }

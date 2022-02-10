@@ -2,9 +2,9 @@ import styled from "styled-components";
 import checkedIcon from "../../assets/checked.svg";
 
 export const Radio = styled.input`
- -webkit-appearance: none;
+/* -webkit-appearance: none;
  -moz-appearance: none;
-  appearance: none;
+  appearance: none;*/
 `;
 
 export const RadioLabel = styled.label`
@@ -41,9 +41,10 @@ place-content: center;
 `
 
 export const Row = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: row;
+  margin-bottom: 1.5rem;
   padding: 0.5rem;
   vertical-align: middle;
-  align-items: center;
 `
