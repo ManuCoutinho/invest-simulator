@@ -4,7 +4,7 @@ import { FlexBox } from "./components/Foundation/FlexBox"
 import { Title } from "./components/Foundation/Title"
 import MainForm from "./components/MainForm"
 import { FlexGrid } from "./components/Foundation/FlexGrid"
-import Chart from "./components/Chart"
+import ChartComponent from "./components/ChartComponent"
 import { ResultsBoard } from "./components/ResultsBoard"
 
 function App() {  
@@ -12,13 +12,14 @@ function App() {
     <Container>      
         <Heading text="Simulador de Investimentos"/>
         <FlexGrid>
-          <FlexBox direction="column">
+          <FlexBox>
               <Title fontSize="1.8em">Simulador</Title>
               <MainForm/>
           </FlexBox>
-          <FlexBox direction="row">
+          <FlexBox justify="flex-start">
+            <Title fontSize="1.8em">Resultado da Simulação</Title>
             <ResultsBoard/>
-            <Chart/>
+            <ChartComponent/>
           </FlexBox>    
         </FlexGrid>
     </Container>

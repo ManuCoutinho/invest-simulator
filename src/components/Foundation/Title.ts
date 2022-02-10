@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 type TitleProps = {
-  fontSize: string;
+  fontSize?: string;
 }
 
 export const Title = styled.h3<TitleProps>`
