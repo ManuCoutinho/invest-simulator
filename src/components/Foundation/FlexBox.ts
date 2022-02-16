@@ -5,11 +5,10 @@ type FlexBoxProps = {
   justify?: string;
 }
 
-export const FlexBox = styled.div<FlexBoxProps>`
- width: 100%;
- margin: 0 auto;
+export const FlexBox = styled.div<FlexBoxProps>`  
  padding: 0.5rem;
  display: flex;
  justify-content: ${props => props.justify || "center"};
  flex-direction: ${props => props.direction || "column"};
+ flex-wrap: wrap;
 `

@@ -107,7 +107,7 @@ const series = [
 export default function ChartComponent() {
   return(
     <Row justify="flex-start">
-      <Chart type="bar" height="350" width="600px" options={options} series={series} />
+      <Chart type="bar" height="400" width="650px" options={options} series={series} />
     </Row>
   )
 }

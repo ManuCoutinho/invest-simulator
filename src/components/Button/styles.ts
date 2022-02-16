@@ -9,6 +9,7 @@ margin-top: 1.5rem;
 transition: ${({theme}) => theme.transition};
 width: 250px;
 
+  &[type=reset],
   &[type=button]{
     background: transparent;
     border: 2px solid ${({theme}) => theme.colors.black};

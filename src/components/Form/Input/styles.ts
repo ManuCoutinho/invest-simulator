@@ -15,7 +15,20 @@ export const InputBase = styled.input`
   border: 0;
   border-bottom:1.9px solid ${({theme}) => theme.colors.black};
   line-height: 2rem;
-  padding: 0.5rem;  
+  padding: 0.5rem;
+ 
+  &[type="number"]{
+    appearance: textfield;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {   
+        -webkit-appearance: none;    
+      }
+  }  
 `
 export const FormErrorMessage = styled.span`
+  color:${({theme}) => theme.colors.red};
+  padding: 0.5rem;
+  font-size: ${({theme}) => theme.fontSize.sm};
+
+  //TODO acertar cor da label e border
 `

@@ -18,6 +18,7 @@ declare module "styled-components" {
       orange: {
         400: string;
       };
+      red: string;
       white: string;
     };
     font: string;

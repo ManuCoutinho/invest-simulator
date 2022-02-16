@@ -14,6 +14,7 @@ export const themeBase = {
     orange: {
       400:"#ED8E53"
     },
+    red: "#D90429",
     white:"#FFFFFF",
   },
   font: "'Roboto', sans-serif",

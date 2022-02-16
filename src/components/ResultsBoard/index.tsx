@@ -1,13 +1,14 @@
 import { FlexGrid } from "../Foundation/FlexGrid"
-import { Row } from "../Foundation/Row"
-import { Title } from "../Foundation/Title"
+import { CardResults } from "./CardResults"
+
+import { Container } from "./styles"
 
 export function ResultsBoard(){
   return(
-    <Row>      
-      <FlexGrid gridSize="repeat(3, 1fr)">
-                
-      </FlexGrid> 
-   </Row>
+   <Container>
+      <FlexGrid gridSize="repeat(auto-fit, minmax(150px, 1fr))" gap="2rem">
+       
+    </FlexGrid> 
+   </Container>
   )
 }
