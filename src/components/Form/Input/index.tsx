@@ -5,11 +5,12 @@ import { FormControl, FormLabel, FormErrorMessage, InputBase } from "./styles"
 interface InputProps {  
   name: string;
   label: string;
+  placeholder?: string;
   error?: FieldError;  
 }
 
 const InputDefault:ForwardRefRenderFunction<HTMLInputElement, InputProps> = 
-    ({ name, label, error, ...rest}, ref) => {   
+    ({ name, label, error, placeholder, ...rest}, ref) => {   
   return(
    <FormControl>     
       <FormLabel htmlFor={name}>{label}</FormLabel>
@@ -20,7 +21,8 @@ const InputDefault:ForwardRefRenderFunction<HTMLInputElement, InputProps> =
         aria-required={true}
         aria-label={label}        
         {...rest}
-        ref={ref}                   
+        ref={ref}
+        placeholder={placeholder}                   
       />
      {!!error && (<FormErrorMessage>{ error.message }</FormErrorMessage>)}
    </FormControl> 

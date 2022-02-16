@@ -5,29 +5,25 @@ import { FlexBox } from "../Foundation/FlexBox"
 import { Title } from "../Foundation/Title"
 import { Button } from "../Button"
 import { Input } from "./Input"
-import { RadioGroupIncome } from "./RadioInput/RadioGroupIncome"
-import { RadioGroupIndexingTypes } from "./RadioInput/RadioGroupIndexingTypes"
+import { RadioGroupIncoming } from "./RadioInput/RadioGroupIncoming"
+import { RadioGroupIndexing } from "./RadioInput/RadioGroupIndexing"
 
 import { FormElement, FormContainer } from "./styles"
 import { Row } from "../Foundation/Row"
-
-type GetIndex ={
-  index: {
-    name: string;
-    value: number;
-  }  
-}
 
 type MainFormProps = {
   initialInvestment:number;
   deadline: number;
   monthlyInvestment: number;
-  profitability: number; 
+  profitability: number;
+  incoming: string;
+  indexing: string; 
 }
 
 export function Form ()  { 
   const { register, handleSubmit, reset, formState, control } = useForm<MainFormProps>()  
   const { errors } = formState    
+
   const { setState: setGlobalState } = useContext(DataContext)
 
   const onSubmit:SubmitHandler<MainFormProps> = (data) => { 
@@ -35,20 +31,23 @@ export function Form ()  {
       initialInvestment: data.initialInvestment,
       deadline: data.deadline,
       monthlyInvestment: data.monthlyInvestment,
-      profitability: data.profitability,
+      profitability: data.profitability,   
+      indexing:data.indexing,
+      incoming:data.incoming,
     })
-    reset() 
-    console.log(data)    
-  }
-  //! mapear radio group e testar com a var fetching
-  //todo criar retorno nos input readOnly
-
+    reset()  
+  } 
+  
+  
+     ( control.register)
+  //TODO colocar retorno do index no placeholder
+  
   return(
     <FormElement onSubmit={handleSubmit(onSubmit)}>
       <FormContainer >
         <FlexBox direction="column"> 
           <Title fontSize="1em">Rendimentos</Title>
-          <RadioGroupIncome control={control}/>            
+          <RadioGroupIncoming control={control}/>            
           <Input
               name="initialInvestment"              
               label="Aporte Inicial"              
@@ -68,7 +67,7 @@ export function Form ()  {
         </FlexBox>
         <FlexBox direction="column">
           <Title fontSize="1em">Tipos de indexação</Title>   
-          <RadioGroupIndexingTypes control={control}/>
+          <RadioGroupIndexing control={control}/>
           <Input
               name="monthlyInvestment"
               label="Aporte Mensal"              
@@ -83,12 +82,12 @@ export function Form ()  {
             />
             <Input
             name="cdi"
-            label="CDI (ao ano)"                         
+            label="CDI (ao ano)"                                 
           />               
         </FlexBox>           
       </FormContainer>     
      <Row justify="space-evenly">
-      <Button text="Limpar campos" type="button" onclick={()=> reset()}/>
+      <Button text="Limpar campos" type="button" onclick={() => reset()}/>
       <Button text="Simular" type="submit"/>
      </Row>
     </FormElement>

@@ -11,7 +11,7 @@ import { RiCheckboxBlankCircleLine, RiCheckLine } from "react-icons/ri"
 
 import { RadioBox } from "./styles"
 
-export function RadioGroupIncome({ control }: { control: Control }){  
+export function RadioGroupIncoming({ control }: { control: Control }){  
   const defaultTheme = useContext(ThemeContext);
 
   const CustomRadio = styled(Radio)<RadioProps>(()=>({
@@ -25,13 +25,13 @@ export function RadioGroupIncome({ control }: { control: Control }){
     <RadioBox>
       <Controller
         control={control}
-        name="Rendimento"
+        name="incoming"
         defaultValue="bruto"
         render={({ field: { onChange, onBlur, value } }) => (        
           <RadioGroup            
             row
             aria-labelledby="Tipo de Rendimento"
-            name="tipoRendimento"
+            name="incoming"
             value={value}
             onChange={onChange}
             onBlur={onBlur}                              

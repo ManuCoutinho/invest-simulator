@@ -1,28 +1,46 @@
 import { useContext } from "react";
+import { DataContext } from "../../context/dataForm";
 import { useFetch } from "../../hooks/useFetch";
-import { SimulatorContext } from "../../context";
+
 import { Title } from "../Foundation/Title";
 import { Card } from "./styles";
 
-
+type DataFetch = { 
+    tipoIndexacao:string;
+    tipoRendimento: string;
+    valorFinalBruto: number;
+    aliquotaIR: number;
+    valorPagoIR: number;
+    valorTotalInvestido: number;
+    valorFinalLiquido: number;
+    ganhoLiquido: number;
+   
+}
 
 export function CardResults() {
-  const index = useContext(SimulatorContext)
-  const getData =  useFetch('simulacoes')
-   
-  if(index === 0){
-    console.log(index)
+  const{ state: index, setState } = useContext(DataContext)
+  const { data, isFetching } =  useFetch<DataFetch>('simulacoes')
+  const loading = isFetching
+  const getData = data
+
+  let filteredData:DataFetch[] = []
+  
+  const handleFilterData = () => {    
+      if(Array.isArray(getData)){
+        filteredData = getData.filter(d => d.tipoIndexacao === index.indexing)
+          .filter( t => t.tipoRendimento === index.incoming)                 
+      }          
   }
-  //const data = getData.map(data => console.log(JSON.stringify(data, null, 4)))
-  //todo todo fazer match com a comparação do radius com o indice da api
   
-  
+  console.log(handleFilterData())
+  //? colocar chamada da handleFilterData no switch? 
+  //! rendetizar return após submit do form
   return (
-    <>
-    {getData.isFetching && <p>Carregando...</p>}
+    <>    
+      {loading && <p>Carregando...</p>}
     <Card>
         <Title fontSize="1em">Valor final Bruto</Title>
-        {getData?.map((data) => (
+        {filteredData.map(data => (
           <span key={Math.random()}>{new Intl.NumberFormat('pt-BR', {
               style: 'currency',
               currency: 'BRL'
@@ -31,18 +49,18 @@ export function CardResults() {
       </Card>
       <Card>
         <Title fontSize="1em">Alíquota do IR</Title>
-        {getData?.map((data) => (
+        {filteredData.map(data => (
           <span key={Math.random()}>{new Intl.NumberFormat('pt-BR', {
             style:'percent',
             minimumFractionDigits: 1,
             maximumFractionDigits: 1,
             maximumSignificantDigits: 2
-          }).format(data.aliquotaIR)}</span>
+          }).format(data.aliquotaIR/100)}</span>
         ))}
       </Card>
       <Card>
         <Title fontSize="1em">Valor Pago em IR</Title>
-        {getData?.map((data) => (
+        {filteredData.map(data => (
           <span key={Math.random()}>{new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL'
@@ -51,7 +69,7 @@ export function CardResults() {
       </Card>
       <Card>
         <Title fontSize="1em">Valor final Líquido</Title>
-        {getData?.map((data) => (
+        {filteredData.map(data => (
           <span key={Math.random()}>{new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL'
@@ -60,7 +78,7 @@ export function CardResults() {
       </Card>
       <Card>
         <Title fontSize="1em">Valor Total Investido</Title>
-        {getData?.map((data) => (
+        {filteredData.map(data => (
           <span key={Math.random()}>{new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL'
@@ -69,13 +87,13 @@ export function CardResults() {
       </Card>
       <Card>
         <Title fontSize="1em">Ganho Líquido</Title>
-        {getData?.map((data) => (
+        {filteredData.map(data => (
           <span key={Math.random()}>{new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL'
          }).format(data.ganhoLiquido)}</span>
         ))}
-      </Card>
+      </Card>      
     </>
   );
 }

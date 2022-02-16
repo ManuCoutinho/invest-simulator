@@ -10,7 +10,7 @@ import { RiCheckboxBlankCircleLine, RiCheckLine } from "react-icons/ri"
 import { RadioBox } from "./styles"
 
 
-export function RadioGroupIndexingTypes({ control }: { control: Control }){ 
+export function RadioGroupIndexing({ control }: { control: Control }){ 
   const defaultTheme = useContext(ThemeContext);
   const CustomRadio = styled(Radio)<RadioProps>(()=>({
     "&.Mui-checked": {      
@@ -23,13 +23,13 @@ export function RadioGroupIndexingTypes({ control }: { control: Control }){
     <RadioBox>
       <Controller
         control={control}
-        name="Tipo de indexação"
+        name="indexing"
         defaultValue="pos"
         render={({ field: { onChange, onBlur, value } }) => (
           <RadioGroup            
             row
             aria-labelledby="Tipo de indexação"
-            name="tipoIndexacao"
+            name="indexing"
             value={value}
             onChange={onChange}
             onBlur={onBlur}

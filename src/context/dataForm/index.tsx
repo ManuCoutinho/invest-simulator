@@ -5,8 +5,8 @@ type DataType ={
   deadline: number;
   monthlyInvestment: number;
   profitability: number;
-  income?: number;
-  indexType?: number; 
+  indexing?: string;
+  incoming?: string; 
 }
 
 type PropsDataContext = {
