@@ -17,6 +17,12 @@ html {
  }
 }
 
+body, html {
+  scroll-behavior: smooth;
+  font-smooth: antialiased;
+  -webkit-font-smooth: antialiased;  
+}
+
 body {
  background: ${({theme}) => theme.colors.white};
  color: ${({theme}) => theme.colors.black};

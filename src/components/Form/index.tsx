@@ -13,6 +13,7 @@ import { RadioGroupIncoming } from "./RadioInput/RadioGroupIncoming"
 import { RadioGroupIndexing } from "./RadioInput/RadioGroupIndexing"
 
 import { FormElement, FormContainer } from "./styles"
+import { Header } from "./Header"
 
 type MainFormProps = {
   initialInvestment: number;
@@ -57,7 +58,7 @@ export function Form() {
     <FormElement onSubmit={handleSubmit(onSubmit)}>
       <FormContainer>
         <FlexBox direction="column">
-          <Title fontSize="1em">Rendimentos</Title>
+          <Header text="Rendimentos"/>
           <RadioGroupIncoming control={control} />
           <Input
             name="initialInvestment"
@@ -74,7 +75,7 @@ export function Form() {
           <Input name="ipca" label="IPCA (ao ano)" />
         </FlexBox>
         <FlexBox direction="column">
-          <Title fontSize="1em">Tipos de indexação</Title>
+          <Header text="Tipos de indexação"/>
           <RadioGroupIndexing control={control} />
           <Input
             name="monthlyInvestment"
