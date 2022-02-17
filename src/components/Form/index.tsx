@@ -1,15 +1,17 @@
 import { useContext } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
+import { useFetch } from "../../hooks/useFetch"
 import { DataContext } from "../../context/dataForm"
 import { FlexBox } from "../Foundation/FlexBox"
 import { Title } from "../Foundation/Title"
+import { Row } from "../Foundation/Row"
 import { Button } from "../Button"
 import { Input } from "./Input"
 import { RadioGroupIncoming } from "./RadioInput/RadioGroupIncoming"
 import { RadioGroupIndexing } from "./RadioInput/RadioGroupIndexing"
 
 import { FormElement, FormContainer } from "./styles"
-import { Row } from "../Foundation/Row"
+
 
 type MainFormProps = {
   initialInvestment:number;
@@ -19,14 +21,18 @@ type MainFormProps = {
   incoming: string;
   indexing: string; 
 }
+type Indicators = {
+  nome: string;
+  valor: number;
+}
 
 export function Form ()  { 
   const { register, handleSubmit, reset, formState, control } = useForm<MainFormProps>()  
-  const { errors } = formState    
-
+  const { errors } = formState   
   const { setState: setGlobalState } = useContext(DataContext)
-
-  const onSubmit:SubmitHandler<MainFormProps> = (data) => { 
+  const { data: getIndex } = useFetch<Indicators>('indicadores')
+  
+  const onSubmit:SubmitHandler<MainFormProps> = (data) => {   
     setGlobalState({      
       initialInvestment: data.initialInvestment,
       deadline: data.deadline,
@@ -35,13 +41,8 @@ export function Form ()  {
       indexing:data.indexing,
       incoming:data.incoming,
     })
-    reset()  
-  } 
-  
-  
-     ( control.register)
-  //TODO colocar retorno do index no placeholder
-  
+    reset()    
+  }  
   return(
     <FormElement onSubmit={handleSubmit(onSubmit)}>
       <FormContainer >
@@ -62,7 +63,7 @@ export function Form ()  {
             />
             <Input
               name="ipca"
-              label="IPCA (ao ano)"                        
+              label="IPCA (ao ano)"                                      
             />               
         </FlexBox>
         <FlexBox direction="column">
@@ -82,7 +83,7 @@ export function Form ()  {
             />
             <Input
             name="cdi"
-            label="CDI (ao ano)"                                 
+            label="CDI (ao ano)"                                                      
           />               
         </FlexBox>           
       </FormContainer>     

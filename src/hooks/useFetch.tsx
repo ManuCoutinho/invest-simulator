@@ -5,13 +5,17 @@ import { api } from "../services/api"
 
 export function useFetch<T = unknown>(url: string, options?: AxiosRequestConfig) {
   const [data, setData] = useState<T | null>(null)
+  const [status, setStatus] = useState(false)
   const [isFetching, setIsFetching] = useState(true)
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() =>{
     api.get(url, options)
     .then(response => {
-      setData(response.data)     
+      setData(response.data)
+      if(response.status === 200) {
+        setStatus(true)
+      }     
     })
     .catch(err =>{
       setError(err)
@@ -20,5 +24,5 @@ export function useFetch<T = unknown>(url: string, options?: AxiosRequestConfig)
       setIsFetching(false)
     })
   },[])
-  return { data, error, isFetching }
+  return { data, error, isFetching, status }
 }

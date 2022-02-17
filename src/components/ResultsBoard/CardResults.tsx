@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { DataContext } from "../../context/dataForm";
-import { useFetch } from "../../hooks/useFetch";
-
-import { Title } from "../Foundation/Title";
-import { Card } from "./styles";
+import { useContext } from "react"
+import { DataContext } from "../../context/dataForm"
+import { useFetch } from "../../hooks/useFetch"
+import { Title } from "../Foundation/Title"
+import { Card } from "./styles"
 
 type DataFetch = { 
     tipoIndexacao:string;
@@ -18,26 +17,21 @@ type DataFetch = {
 }
 
 export function CardResults() {
-  const{ state: index, setState } = useContext(DataContext)
-  const { data, isFetching } =  useFetch<DataFetch>('simulacoes')
-  const loading = isFetching
-  const getData = data
-
-  let filteredData:DataFetch[] = []
+  const{ state: index } = useContext(DataContext)
+  const { data: getData, isFetching } =  useFetch<DataFetch>('simulacoes')
   
-  const handleFilterData = () => {    
+  let filteredData:DataFetch[] = [] 
+ 
+   const handleFilterData = () => {    
       if(Array.isArray(getData)){
         filteredData = getData.filter(d => d.tipoIndexacao === index.indexing)
-          .filter( t => t.tipoRendimento === index.incoming)                 
+          .filter( d => d.tipoRendimento === index.incoming)                 
       }          
   }
-  
-  console.log(handleFilterData())
-  //? colocar chamada da handleFilterData no switch? 
-  //! rendetizar return após submit do form
-  return (
+ handleFilterData()
+  return (    
     <>    
-      {loading && <p>Carregando...</p>}
+      {isFetching && <p>Carregando...</p>}
     <Card>
         <Title fontSize="1em">Valor final Bruto</Title>
         {filteredData.map(data => (

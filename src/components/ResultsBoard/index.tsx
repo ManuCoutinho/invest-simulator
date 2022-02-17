@@ -6,13 +6,13 @@ import { CardResults } from "./CardResults"
 import { Container } from "./styles"
 
 export function ResultsBoard(){
-  const { data } = useFetch('simulacoes')
- 
+  const { status } = useFetch('simulacoes')
+ console.log(status)
 
   return(
    <Container>
       <FlexGrid gridSize="repeat(auto-fit, minmax(150px, 1fr))" gap="2rem">
-       <CardResults/>
+        <CardResults/>
     </FlexGrid> 
    </Container>
   )
