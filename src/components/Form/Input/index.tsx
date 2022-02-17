@@ -1,17 +1,19 @@
-import { forwardRef, ForwardRefRenderFunction } from "react"
-import { FieldError } from "react-hook-form"
+import { forwardRef, ForwardRefRenderFunction, useContext } from "react"
+import { FieldErrors } from "react-hook-form"
+import { ThemeContext } from "styled-components"
 import { FormControl, FormLabel, FormErrorMessage, InputBase } from "./styles"
 
 interface InputProps {  
   name: string;
   label: string;
-  error?: FieldError;   
+  error?: FieldErrors;   
 }
 
 const InputDefault:ForwardRefRenderFunction<HTMLInputElement, InputProps> = 
-    ({ name, label, error, ...rest }, ref) => {   
+    ({ name, label, error, ...rest }, ref) => {
+      const theme = useContext(ThemeContext);   
   return(
-   <FormControl>     
+   <FormControl focus={!!error ? theme.colors.red : theme.colors.black}>     
       <FormLabel htmlFor={name}>{label}</FormLabel>
       <InputBase
         name={name}                       
@@ -22,7 +24,7 @@ const InputDefault:ForwardRefRenderFunction<HTMLInputElement, InputProps> =
         {...rest}
         ref={ref}                        
       />
-     {!!error && (<FormErrorMessage>{ error.message }</FormErrorMessage>)}
+     {!!error && (<FormErrorMessage>{ error?.message }</FormErrorMessage>)}
    </FormControl> 
   )
 }

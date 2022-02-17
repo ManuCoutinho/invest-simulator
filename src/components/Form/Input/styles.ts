@@ -1,13 +1,18 @@
 import styled from "styled-components"
 
-export const FormControl = styled.div`
+type FocusProps = {
+  focus?: string; 
+}
+
+export const FormControl = styled.div<FocusProps>`
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem;  
+  color:${props => props.focus || "black"}; 
 `
 export const FormLabel = styled.label`
-  margin-bottom: 0.5rem;   
+  margin-bottom: 0.5rem;            
 `
 export const InputBase = styled.input`
   background: ${({theme}) => theme.colors.gray[100]};
