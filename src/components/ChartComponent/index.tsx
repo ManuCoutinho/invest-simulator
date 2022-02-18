@@ -37,16 +37,36 @@ const options = {
       color:  '#000'
     },
   },
-  responsive: [{
-    breakpoint: 480,
-    options: {
-      legend: {
-        position: 'bottom',
-        offsetX: -10,
-        offsetY: 0
+  responsive: [
+    { breakpoint:1500,
+      options: {
+        chart:{
+          width: '500px'       
+        }
+      }
+    },
+   { breakpoint: 1280,
+     options:{
+      chart:{
+        width: '400px'       
       }
     }
-  }],
+  },
+  { breakpoint: 1150,
+    options:{
+     chart:{
+       width: '350px'       
+     }
+   }
+ },
+ { breakpoint:400,
+  options: {
+    chart:{
+      width: '300px'       
+    }
+  }
+}
+],
   stroke: {
     show: false,
     color: 'transparent',
@@ -106,8 +126,8 @@ const series = [
 
 export default function ChartComponent() {
   return(
-    <Row justify="flex-start">
-      <Chart type="bar" height="400" width="650px" options={options} series={series} />
+    <Row justify="flex-start" maxWidth="760px">
+      <Chart type="bar" height="400" width="600px" options={options} series={series} />
     </Row>
   )
 }

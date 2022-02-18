@@ -39,6 +39,7 @@ export function RadioGroupIncoming({ control }: { control: Control }){
            
             <FormControlLabel label="Bruto" value="bruto" control={              
               <CustomRadio 
+                size="small" 
                 icon={<RiCheckboxBlankCircleLine color="transparent"/>} 
                 checkedIcon={<RiCheckLine color="#fff"/>}             
                 inputProps={{
@@ -52,7 +53,8 @@ export function RadioGroupIncoming({ control }: { control: Control }){
               label="Liquído"   
               value="liquido"
               control={
-                <CustomRadio                    
+                <CustomRadio
+                    size="small"                     
                     icon={<RiCheckboxBlankCircleLine color="transparent"/>} 
                     checkedIcon={<RiCheckLine color="#fff" />}         
                     inputProps={{

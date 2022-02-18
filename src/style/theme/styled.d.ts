@@ -23,6 +23,7 @@ declare module "styled-components" {
     };
     font: string;
     fontSize: {
+      xsm: string;
       sm: string;
       md: string;
       lg: string;

@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { ThemeContext } from "styled-components"
 import { DataContext } from "../../context/dataForm"
 import { useFetch } from "../../hooks/useFetch"
 import { Row } from "../Foundation/Row"
@@ -21,6 +22,7 @@ export function CardResults() {
   const{ state: index } = useContext(DataContext)
   const { data: getData, isFetching } =  useFetch<DataFetch>('simulacoes')
   let filteredData:DataFetch[] = [] 
+  const theme = useContext(ThemeContext)
  
    const handleFilterData = () => {
      if (Array.isArray(getData)) {
@@ -68,7 +70,7 @@ export function CardResults() {
           </span>
         ))}
       </Card>
-      <Card>
+      <Card color={theme.colors.green[200]}>
         <Title fontSize="1em">Valor final Líquido</Title>
         {filteredData.map((data) => (
           <span key={Math.random()}>
@@ -90,7 +92,7 @@ export function CardResults() {
           </span>
         ))}
       </Card>
-      <Card>
+      <Card color={theme.colors.green[200]}>
         <Title fontSize="1em">Ganho Líquido</Title>
         {filteredData.map((data) => (
           <span key={Math.random()}>

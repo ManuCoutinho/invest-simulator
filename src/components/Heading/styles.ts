@@ -8,4 +8,8 @@ line-height: 2em;
 margin-bottom: 2rem;
 padding: 0.5rem;
 text-align: center;
+
+@media (max-width: 45em) {
+  font-size: ${({theme}) => theme.fontSize.lg};
+}
 `

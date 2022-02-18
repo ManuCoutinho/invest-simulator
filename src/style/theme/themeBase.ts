@@ -9,7 +9,7 @@ export const themeBase = {
       300: "#969696"
     },
     green: {
-      200: "#94C88B"
+      200: "#4BA63D"
     },
     orange: {
       400:"#ED8E53"
@@ -19,7 +19,8 @@ export const themeBase = {
   },
   font: "'Roboto', sans-serif",
   fontSize: {
-    sm: "0.8em",
+    xsm: "0.75em",
+    sm: "0.875em",
     md: "1em",
     lg:"1.5em",
     xl: "2.5em",

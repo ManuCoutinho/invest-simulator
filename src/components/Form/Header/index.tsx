@@ -1,18 +1,19 @@
-import { IconButton, Tooltip } from "@mui/material";
-import { useContext } from "react";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import { ThemeContext } from "styled-components";
-import { Row } from "../../Foundation/Row";
-import { Title } from "../../Foundation/Title";
+import { IconButton, Tooltip } from "@mui/material"
+import { useContext } from "react"
+import { AiOutlineInfoCircle } from "react-icons/ai"
+import { ThemeContext } from "styled-components"
+import { Row } from "../../Foundation/Row"
+import { Title } from "../../Foundation/Title"
+import { HeaderForm } from "./styles"
 
 interface HeaderProps {
-  text: string;
+  text: string
 }
 export function Header({ text }: HeaderProps) {
-  const defaultTheme = useContext(ThemeContext);
+  const defaultTheme = useContext(ThemeContext)
 
   return (
-    <Row justify="space-between">
+    <HeaderForm justify="space-between">
       <Title fontSize="1em">{text}</Title>
       <Tooltip
         title="Texto demonstrativo..."
@@ -22,9 +23,9 @@ export function Header({ text }: HeaderProps) {
         componentsProps={{
           tooltip: {
             sx: {
-              backgroundColor: "rgba(255, 255, 255, 0.75)",
-              borderColor: " rgba(209, 213, 219, 0.3)",
+              backgroundColor: defaultTheme.colors.white,              
               color: defaultTheme.colors.black,
+              boxShadow: 1
             },
           },
         }}
@@ -33,6 +34,6 @@ export function Header({ text }: HeaderProps) {
           <AiOutlineInfoCircle color="#000" />
         </IconButton>
       </Tooltip>
-    </Row>
-  );
+    </HeaderForm>
+  )
 }

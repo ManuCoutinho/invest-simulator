@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle `
+const GlobalStyle = createGlobalStyle`
 * {
   margin: 0;
   padding: 0;
@@ -8,35 +8,40 @@ const GlobalStyle = createGlobalStyle `
 }
 
 html {
- @media (max-width: 1080px){
+ @media (max-width: 67.5em){
    font-size: 93.75%;
  }
 
- @media (max-width: 720px){
+ @media (max-width: 45em){
    font-size: 87.5%;
  }
+  
+ @media (max-width: 27em) {
+  html {
+    font-size: 80%;
+  }
+}
 }
 
 body, html {
-  scroll-behavior: smooth;
-  font-smooth: antialiased;
-  -webkit-font-smooth: antialiased;  
+  scroll-behavior: smooth; 
+  -webkit-font: antialiased;  
 }
 
 body {
- background: ${({theme}) => theme.colors.white};
- color: ${({theme}) => theme.colors.black};
- transition: ${({theme}) => theme.transition};
+ background: ${({ theme }) => theme.colors.white};
+ color: ${({ theme }) => theme.colors.black};
+ transition: ${({ theme }) => theme.transition};
 }
 
 body, input, textarea, button {
- font-family: ${({theme}) => theme.font}; 
- font-weight: ${({theme}) => theme.fontWeight.normal};
- font-size: ${({theme}) => theme.fontSize.md};
+ font-family: ${({ theme }) => theme.font}; 
+ font-weight: ${({ theme }) => theme.fontWeight.normal};
+ font-size: 16px;
 }
 
 h1, h2, h3, h4, h5, h6, strong {
- font-weight: ${({theme}) => theme.fontWeight.bold};
+ font-weight: ${({ theme }) => theme.fontWeight.bold};
 }
 
 a {

@@ -11,4 +11,5 @@ export const FlexBox = styled.div<FlexBoxProps>`
  justify-content: ${props => props.justify || "center"};
  flex-direction: ${props => props.direction || "column"};
  flex-wrap: wrap;
+ width: 100%;
 `

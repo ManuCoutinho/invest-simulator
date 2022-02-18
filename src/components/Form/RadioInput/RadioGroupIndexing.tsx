@@ -7,7 +7,7 @@ import Radio from "@mui/material/Radio"
 import RadioGroup from "@mui/material/RadioGroup"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import { RiCheckboxBlankCircleLine, RiCheckLine } from "react-icons/ri"
-import { RadioBox } from "./styles"
+import { RadioBox2 } from "./styles"
 
 
 export function RadioGroupIndexing({ control }: { control: Control }){ 
@@ -20,7 +20,7 @@ export function RadioGroupIndexing({ control }: { control: Control }){
   }))
 
   return (
-    <RadioBox>
+    <RadioBox2>
       <Controller
         control={control}
         name="indexing"
@@ -35,9 +35,10 @@ export function RadioGroupIndexing({ control }: { control: Control }){
             onBlur={onBlur}
           >
             <FormControlLabel value="pre" label="PRÉ" control={
-              <CustomRadio 
+              <CustomRadio
+                size="small" 
                 icon={<RiCheckboxBlankCircleLine color="transparent"/>} 
-                checkedIcon={<RiCheckLine color="#fff"/>}             
+                checkedIcon={<RiCheckLine color="#fff" size={10}/>}             
                 inputProps={{
                     'aria-hidden':true,
                     'aria-label': 'pre',
@@ -47,6 +48,7 @@ export function RadioGroupIndexing({ control }: { control: Control }){
             />
             <FormControlLabel value="pos" label="PÓS"control={
               <CustomRadio 
+                size="small" 
                 icon={<RiCheckboxBlankCircleLine color="transparent"/>} 
                 checkedIcon={<RiCheckLine color="#fff"/>}             
                 inputProps={{
@@ -61,6 +63,7 @@ export function RadioGroupIndexing({ control }: { control: Control }){
               label="FIXADO"
               control={
               <CustomRadio
+                size="small" 
                 icon={<RiCheckboxBlankCircleLine color="transparent"/>} 
                 checkedIcon={<RiCheckLine color="#fff"/>}             
                 inputProps={{
@@ -73,7 +76,7 @@ export function RadioGroupIndexing({ control }: { control: Control }){
           </RadioGroup>
         )}
       />
-    </RadioBox>
+    </RadioBox2>
   );
 }
 

@@ -20,7 +20,8 @@ const InputDefault:ForwardRefRenderFunction<HTMLInputElement, InputProps> =
         id={name}
         type="number"
         aria-required={true}
-        aria-label={label}        
+        aria-label={label}
+        border={!!error ? theme.colors.red : theme.colors.black}       
         {...rest}
         ref={ref}                        
       />
