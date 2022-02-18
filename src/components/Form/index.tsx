@@ -1,33 +1,19 @@
-import { useContext, useEffect } from "react"
-import { useForm, SubmitHandler } from "react-hook-form"
-import { formSchema } from "./schemaValidation"
-import { yupResolver } from "@hookform/resolvers/yup"
-import { useFetch } from "../../hooks/useFetch"
-import { DataContext } from "../../context/dataForm"
-import { FlexBox } from "../Foundation/FlexBox"
-import { Row } from "../Foundation/Row"
-import { Button } from "../Button"
-import { Input } from "./Input"
-import { RadioGroupIncoming } from "./RadioInput/RadioGroupIncoming"
-import { RadioGroupIndexing } from "./RadioInput/RadioGroupIndexing"
+import { useContext } from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { formSchema } from './schemaValidation'
+import { useFetch } from '../../hooks/useFetch'
+import { DataContext } from '../../context/dataForm'
+import { FlexBox } from '../Foundation/FlexBox'
+import { Row } from '../Foundation/Row'
+import { RadioGroupIncoming } from './RadioInput/RadioGroupIncoming'
+import { RadioGroupIndexing } from './RadioInput/RadioGroupIndexing'
+import { Input } from './Input'
+import { Button } from '../Button'
+import { MainFormProps, Indicators } from './types'
 
-import { FormElement, FormContainer } from "./styles"
-import { Header } from "./Header"
-
-type MainFormProps = {
-  initialInvestment: number;
-  deadline: number;
-  monthlyInvestment: number;
-  profitability: number;
-  incoming: string;
-  indexing: string;
-  ipca: unknown;
-  cdi: unknown;
-}
-type Indicators = {
-  nome: string;
-  valor: number;
-}
+import { FormElement, FormContainer } from './styles'
+import { Header } from './Header'
 
 export function Form() {
   const {
@@ -36,25 +22,27 @@ export function Form() {
     reset,
     formState: { errors },
     control,
-    setValue
+    setValue,
   } = useForm<MainFormProps>({
-    mode: "onChange",
+    mode: 'onChange',
     resolver: yupResolver(formSchema),
   })
   const { setState: setGlobalState } = useContext(DataContext)
-  const { data: getIndex } = useFetch<Indicators>("indicadores")   
-  
-  if(Array.isArray(getIndex)){
-    const setIpca = getIndex.filter(filter => filter.nome === 'ipca')
-    .map(data => data.valor) 
+  const { data: getIndex } = useFetch<Indicators>('indicadores')
+
+  if (Array.isArray(getIndex)) {
+    const setIpca = getIndex
+      .filter((filter) => filter.nome === 'ipca')
+      .map((data) => data.valor)
     setValue('ipca', `${setIpca}%`)
-    
-    const setCdi = getIndex.filter(filter => filter.nome !== 'ipca')
-    .map(data =>  data.valor)  
+
+    const setCdi = getIndex
+      .filter((filter) => filter.nome !== 'ipca')
+      .map((data) => data.valor)
     setValue('cdi', `${setCdi}%`)
   }
 
-    const onSubmit: SubmitHandler<MainFormProps> = (data) => {
+  const onSubmit: SubmitHandler<MainFormProps> = (data) => {
     setGlobalState({
       initialInvestment: data.initialInvestment,
       deadline: data.deadline,
@@ -65,57 +53,49 @@ export function Form() {
     })
     reset()
   }
- 
+
   return (
     <FormElement onSubmit={handleSubmit(onSubmit)}>
       <FormContainer>
-        <FlexBox direction="column">
-          <Header text="Rendimentos"/>
+        <FlexBox direction='column'>
+          <Header text='Rendimentos' />
           <RadioGroupIncoming control={control} />
           <Input
-            name="initialInvestment"
-            label="Aporte Inicial"
+            name='initialInvestment'
+            label='Aporte Inicial'
             error={errors?.initialInvestment}
-            {...register("initialInvestment")}
+            {...register('initialInvestment')}
           />
           <Input
-            name="deadline"
-            label="Prazo (em meses)"
+            name='deadline'
+            label='Prazo (em meses)'
             error={errors?.deadline}
-            {...register("deadline")}
+            {...register('deadline')}
           />
-          <Input name="ipca" label="IPCA (ao ano)" {...register('ipca')}/>
+          <Input name='ipca' label='IPCA (ao ano)' {...register('ipca')} />
         </FlexBox>
-        <FlexBox direction="column">
-          <Header text="Tipos de indexação"/>
+        <FlexBox direction='column'>
+          <Header text='Tipos de indexação' />
           <RadioGroupIndexing control={control} />
           <Input
-            name="monthlyInvestment"
-            label="Aporte Mensal"
+            name='monthlyInvestment'
+            label='Aporte Mensal'
             error={errors?.monthlyInvestment}
-            {...register("monthlyInvestment")}
+            {...register('monthlyInvestment')}
           />
           <Input
-            name="profitability"
-            label="Rentabilidade"
+            name='profitability'
+            label='Rentabilidade'
             error={errors?.profitability}
-            {...register("profitability")}
+            {...register('profitability')}
           />
-          <Input name="cdi" label="CDI (ao ano)" {...register('cdi')}/>
+          <Input name='cdi' label='CDI (ao ano)' {...register('cdi')} />
         </FlexBox>
       </FormContainer>
-      <Row justify="space-evenly">
-        <Button text="Limpar campos" type="button" onclick={() => reset()} />
-        <Button text="Simular" type="submit" />
+      <Row justify='space-evenly'>
+        <Button text='Limpar campos' type='button' onclick={() => reset()} />
+        <Button text='Simular' type='submit' />
       </Row>
     </FormElement>
-  );
+  )
 }
-function getIndexing() {
-  throw new Error("Function not implemented.")
-}
-
-function handleIndexing() {
-  throw new Error("Function not implemented.")
-}
-

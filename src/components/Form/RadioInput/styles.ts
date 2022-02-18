@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const RadioBox = styled.section`
   @media (max-width: 104em) {
@@ -20,22 +20,22 @@ export const RadioBox = styled.section`
       padding: 1rem 0;
     }
   }
-  @media (min-width:  86.9375em) {
+  @media (min-width: 86.9375em) {
     label {
       padding: 1rem 1rem;
     }
     span {
       font-size: ${({ theme }) => theme.fontSize.md};
-    }    
+    }
   }
 
-  @media(min-width:49em) and (max-width: 68em) {
+  @media (min-width: 49em) and (max-width: 68em) {
     label {
       padding: 1rem 1rem;
     }
     span {
       font-size: ${({ theme }) => theme.fontSize.md};
-    }  
+    }
   }
 
   display: flex;
@@ -46,7 +46,7 @@ export const RadioBox = styled.section`
   justify-content: center;
   label {
     border: 1px solid ${({ theme }) => theme.colors.black};
-    
+
     margin-right: 0;
     &:first-child {
       -webkit-border-top-left-radius: ${({ theme }) => theme.radius};
@@ -72,10 +72,9 @@ export const RadioBox = styled.section`
       margin-right: 0.25rem;
     }
   }
-`;
+`
 
 export const RadioBox2 = styled(RadioBox)`
-
   @media (max-width: 89.4375em) {
     label {
       padding: 1rem 2px;
@@ -85,7 +84,7 @@ export const RadioBox2 = styled(RadioBox)`
     }
   }
 
-  @media(min-width:48.9375em) and (max-width: 68em) {
+  @media (min-width: 48.9375em) and (max-width: 68em) {
     label {
       padding: 1rem 0.825rem;
     }
@@ -106,6 +105,6 @@ export const RadioBox2 = styled(RadioBox)`
     }
     span {
       font-size: ${({ theme }) => theme.fontSize.sm};
-    }    
+    }
   }
-`;
+`

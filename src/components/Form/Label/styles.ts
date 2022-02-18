@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const FormControl = styled.div`
   display: flex;
@@ -10,9 +10,7 @@ export const FormLabel = styled.label`
   margin-bottom: 0.5rem;
 `
 export const FormErrorMessage = styled.span`
-  color:${({theme}) => theme.colors.red};
+  color: ${({ theme }) => theme.colors.red};
   padding: 0.5rem;
-  font-size: ${({theme}) => theme.fontSize.sm};
-
-  //TODO acertar cor da label e border
+  font-size: ${({ theme }) => theme.fontSize.sm};
 `
