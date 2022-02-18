@@ -1,11 +1,10 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { formSchema } from "./schemaValidation"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useFetch } from "../../hooks/useFetch"
 import { DataContext } from "../../context/dataForm"
 import { FlexBox } from "../Foundation/FlexBox"
-import { Title } from "../Foundation/Title"
 import { Row } from "../Foundation/Row"
 import { Button } from "../Button"
 import { Input } from "./Input"
@@ -22,6 +21,8 @@ type MainFormProps = {
   profitability: number;
   incoming: string;
   indexing: string;
+  ipca: unknown;
+  cdi: unknown;
 }
 type Indicators = {
   nome: string;
@@ -35,14 +36,25 @@ export function Form() {
     reset,
     formState: { errors },
     control,
+    setValue
   } = useForm<MainFormProps>({
     mode: "onChange",
     resolver: yupResolver(formSchema),
   })
   const { setState: setGlobalState } = useContext(DataContext)
-  const { data: getIndex } = useFetch<Indicators>("indicadores")
+  const { data: getIndex } = useFetch<Indicators>("indicadores")   
+  
+  if(Array.isArray(getIndex)){
+    const setIpca = getIndex.filter(filter => filter.nome === 'ipca')
+    .map(data => data.valor) 
+    setValue('ipca', `${setIpca}%`)
+    
+    const setCdi = getIndex.filter(filter => filter.nome !== 'ipca')
+    .map(data =>  data.valor)  
+    setValue('cdi', `${setCdi}%`)
+  }
 
-  const onSubmit: SubmitHandler<MainFormProps> = (data) => {
+    const onSubmit: SubmitHandler<MainFormProps> = (data) => {
     setGlobalState({
       initialInvestment: data.initialInvestment,
       deadline: data.deadline,
@@ -50,10 +62,10 @@ export function Form() {
       profitability: data.profitability,
       indexing: data.indexing,
       incoming: data.incoming,
-    });
+    })
     reset()
   }
-
+ 
   return (
     <FormElement onSubmit={handleSubmit(onSubmit)}>
       <FormContainer>
@@ -72,7 +84,7 @@ export function Form() {
             error={errors?.deadline}
             {...register("deadline")}
           />
-          <Input name="ipca" label="IPCA (ao ano)" />
+          <Input name="ipca" label="IPCA (ao ano)" {...register('ipca')}/>
         </FlexBox>
         <FlexBox direction="column">
           <Header text="Tipos de indexação"/>
@@ -89,7 +101,7 @@ export function Form() {
             error={errors?.profitability}
             {...register("profitability")}
           />
-          <Input name="cdi" label="CDI (ao ano)" />
+          <Input name="cdi" label="CDI (ao ano)" {...register('cdi')}/>
         </FlexBox>
       </FormContainer>
       <Row justify="space-evenly">
@@ -99,3 +111,11 @@ export function Form() {
     </FormElement>
   );
 }
+function getIndexing() {
+  throw new Error("Function not implemented.")
+}
+
+function handleIndexing() {
+  throw new Error("Function not implemented.")
+}
+

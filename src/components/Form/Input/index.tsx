@@ -17,8 +17,7 @@ const InputDefault:ForwardRefRenderFunction<HTMLInputElement, InputProps> =
       <FormLabel htmlFor={name}>{label}</FormLabel>
       <InputBase
         name={name}                       
-        id={name}
-        type="number"
+        id={name}        
         aria-required={true}
         aria-label={label}
         border={!!error ? theme.colors.red : theme.colors.black}       

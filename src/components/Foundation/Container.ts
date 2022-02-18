@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Container = styled.main`
  background: ${({theme}) => theme.colors.gray[100]};
- width: min(90vw, 1800px);
+ width: min(80vw, 1700px);
  height:auto;
  margin: 2rem auto;
  padding: 1rem 1rem;
