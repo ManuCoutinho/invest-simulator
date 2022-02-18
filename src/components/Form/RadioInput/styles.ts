@@ -75,12 +75,12 @@ export const RadioBox = styled.section`
 `
 
 export const RadioBox2 = styled(RadioBox)`
-  @media (max-width: 89.4375em) {
+  @media (min-width: 86em) {
     label {
-      padding: 1rem 2px;
+      padding: 1rem 0.25rem;
     }
     span {
-      font-size: ${({ theme }) => theme.fontSize.xsm};
+      font-size: ${({ theme }) => theme.fontSize.sm};
     }
   }
 
@@ -96,15 +96,6 @@ export const RadioBox2 = styled(RadioBox)`
   @media (max-width: 45em) {
     label {
       padding: 1rem 0;
-    }
-  }
-
-  @media (min-width: 89.5em) {
-    label {
-      padding: 1rem 0.5rem;
-    }
-    span {
-      font-size: ${({ theme }) => theme.fontSize.sm};
     }
   }
 `

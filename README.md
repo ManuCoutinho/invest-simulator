@@ -37,7 +37,7 @@ Invest Simulator é uma aplicação que recebe as informações do usuário, rea
 ## :heavy_check_mark: Requerimentos
 
 Optei por utilizar o template React para Vite.js para otimizar o build da aplicação. Portanto, antes de iniciar, requer a instalação prévia do Node.Js com a execução do comando:
-`yarn init` ou `npm install` e, da API para renderização dos dados em tela, que pode ser entrada [aqui🔗](https://github.com/eqi-investimentos/desafio-fake-api), juntamente com as orientações para instalação.
+`yarn init` ou `npm install` e, da API para renderização dos dados em tela, que pode ser encontrada [aqui🔗](https://github.com/eqi-investimentos/desafio-fake-api), juntamente com as orientações para instalação.
 
 ## :desktop_computer: Comandos
 
@@ -55,6 +55,7 @@ $ yarn
 $ yarn dev
 
 # O servidor será inicializado em <http://localhost:3000>
+
 # Caso precise alternar a porta poderá utilizar o comando:
 $ yarn vite --port número da porta
 ```
